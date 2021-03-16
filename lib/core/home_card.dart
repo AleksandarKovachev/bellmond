@@ -20,49 +20,53 @@ class HomeCard extends StatelessWidget {
             ),
           );
         },
-        child: Hero(
-          tag: cardNavigation.title,
-          child: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [Color(0xFF202126).withAlpha(1), Color(0xFF202126)]),
-              image: DecorationImage(
-                fit: BoxFit.scaleDown,
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [Color(0xFF202126).withAlpha(1), Color(0xFF202126)]),
+          ),
+          child: Stack(
+            children: [
+              Align(
                 alignment: AlignmentDirectional.bottomEnd,
-                image: AssetImage(
-                  cardNavigation.image,
+                child: Hero(
+                  tag: cardNavigation.title,
+                  child: Image.asset(
+                    cardNavigation.image,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-            ),
-            child: Container(
-              margin: EdgeInsets.all(
-                SizeConfig.getProportionateScreenWidth(10),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    height: 2,
-                    width: SizeConfig.screenWidth / 20,
-                    color: Colors.white,
-                  ),
-                  Text(
-                    cardNavigation.title,
-                    style: TextStyle(
-                      fontFamily: "Montserrat",
-                      fontWeight: FontWeight.w700,
-                      fontSize: ResponsiveWidget.isSmallScreen(context) ||
-                              ResponsiveWidget.isMediumScreen(context)
-                          ? 18
-                          : SizeConfig.screenWidth / 50,
+              Container(
+                margin: EdgeInsets.all(
+                  SizeConfig.getProportionateScreenWidth(10),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 2,
+                      width: SizeConfig.screenWidth / 20,
+                      color: Colors.white,
                     ),
-                  ),
-                ],
+                    Text(
+                      cardNavigation.title,
+                      style: TextStyle(
+                        fontFamily: "Montserrat",
+                        fontWeight: FontWeight.w700,
+                        fontSize: ResponsiveWidget.isSmallScreen(context) ||
+                                ResponsiveWidget.isMediumScreen(context)
+                            ? 18
+                            : SizeConfig.screenWidth / 50,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
+            ],
           ),
         ),
       ),

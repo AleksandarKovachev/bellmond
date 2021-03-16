@@ -8,14 +8,21 @@ import 'package:flutter/material.dart';
 import 'core/util/size_config.dart';
 
 class HomePage extends StatefulWidget {
+  final List<CardNavigation> cardNavigationList;
+
+  HomePage(this.cardNavigationList);
+
   @override
-  HomePageState createState() => HomePageState();
+  HomePageState createState() => HomePageState(cardNavigationList);
 }
 
 class HomePageState extends State<HomePage> {
+  final List<CardNavigation> cardNavigationList;
   ScrollController _scrollController;
   double _scrollPosition = 0;
   double _opacity = 0;
+
+  HomePageState(this.cardNavigationList);
 
   _scrollListener() {
     setState(() {
@@ -32,15 +39,6 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    List<CardNavigation> cardNavigationList = List.of({
-      CardNavigation(image: "assets/images/kasko.png", title: "КАСКО"),
-      CardNavigation(
-          image: "assets/images/insurance.png",
-          title: "ГРАЖДАНСКА ОТГОВОРНОСТ"),
-      CardNavigation(
-          image: "assets/images/ships.png", title: "ПЛАВАТЕЛНИ СЪДОВЕ")
-    });
-
     SizeConfig().init(context);
     _opacity = _scrollPosition < SizeConfig.screenHeight * 1
         ? _scrollPosition / (SizeConfig.screenHeight * 1)

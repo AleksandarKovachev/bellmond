@@ -1,3 +1,4 @@
+import 'package:bellmond/core/card_navigation.dart';
 import 'package:bellmond/home_page.dart';
 import 'package:bellmond/routes.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,20 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    List<CardNavigation> cardNavigationList = List.of({
+      CardNavigation(image: "assets/images/kasko.png", title: "КАСКО"),
+      CardNavigation(
+          image: "assets/images/insurance.png",
+          title: "ГРАЖДАНСКА ОТГОВОРНОСТ"),
+      CardNavigation(
+          image: "assets/images/ships.png", title: "ПЛАВАТЕЛНИ СЪДОВЕ")
+    });
+
+    cardNavigationList.forEach((element) {
+      precacheImage(AssetImage(element.image), context);
+      precacheImage(
+          AssetImage(element.image.replaceAll(".png", "_full.png")), context);
+    });
     return MaterialApp(
       title: 'Bellmond',
       theme: appTheme(),
@@ -33,7 +48,7 @@ class MyApp extends StatelessWidget {
           (context) {
             switch (settings.name) {
               case Routes.home:
-                return HomePage();
+                return HomePage(cardNavigationList);
               default:
                 return null;
             }
