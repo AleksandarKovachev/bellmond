@@ -50,8 +50,9 @@ class HomePageState extends State<HomePage> {
       extendBodyBehindAppBar: true,
       appBar: ResponsiveWidget.isSmallScreen(context)
           ? AppBar(
-              backgroundColor:
-                  Theme.of(context).bottomAppBarColor.withOpacity(_opacity),
+              backgroundColor: ResponsiveWidget.isSmallScreen(context)
+                  ? Colors.transparent
+                  : Theme.of(context).bottomAppBarColor.withOpacity(_opacity),
               elevation: 0,
             )
           : PreferredSize(

@@ -2,6 +2,7 @@ import 'package:bellmond/core/card_navigation.dart';
 import 'package:bellmond/core/util/size_config.dart';
 import 'package:bellmond/core/widget/responsive_widget.dart';
 import 'package:bellmond/payment_page.dart';
+import 'package:bellmond/payment_page_mobile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -22,45 +23,13 @@ class CardPageState extends State<CardPageMobile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: ResponsiveWidget.isSmallScreen(context)
-          ? AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-            )
-          : PreferredSize(
-              preferredSize: Size(SizeConfig.screenWidth, 150),
-              child: Container(
-                color: Colors.transparent,
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.asset('assets/images/Bellmond-Insurance.png'),
-                    SizedBox(width: SizeConfig.screenWidth / 20),
-                    TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.arrow_back,
-                              color: Colors.white,
-                            ),
-                            Text(
-                              "Изход",
-                              style: TextStyle(
-                                fontFamily: "Bebas Neue",
-                                color: Colors.white,
-                              ),
-                            )
-                          ],
-                        ))
-                  ],
-                ),
-              ),
-            ),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        title: Column(
+          children: [],
+        ),
+        elevation: 0,
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(
@@ -108,27 +77,23 @@ class CardPageState extends State<CardPageMobile> {
                 ),
                 SizedBox(height: SizeConfig.screenWidth / 20),
                 Center(
-                  child: Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xFF202126),
-                        border: InputBorder.none,
-                        hintText: 'Номер на талон',
-                      ),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Color(0xFF202126),
+                      border: InputBorder.none,
+                      hintText: 'Номер на талон',
                     ),
                   ),
                 ),
                 SizedBox(height: SizeConfig.screenWidth / 60),
                 Center(
-                  child: Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xFF202126),
-                        border: InputBorder.none,
-                        hintText: 'Регистрационен номер',
-                      ),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Color(0xFF202126),
+                      border: InputBorder.none,
+                      hintText: 'Регистрационен номер',
                     ),
                   ),
                 ),
@@ -142,7 +107,10 @@ class CardPageState extends State<CardPageMobile> {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) =>
-                              PaymentPage(cardNavigation: cardNavigation),
+                              ResponsiveWidget.isSmallScreen(context)
+                                  ? PaymentPageMobile(
+                                      cardNavigation: cardNavigation)
+                                  : PaymentPage(cardNavigation: cardNavigation),
                         ),
                       );
                     },
