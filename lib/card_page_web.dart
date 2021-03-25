@@ -1,14 +1,24 @@
 import 'package:bellmond/core/card_navigation.dart';
 import 'package:bellmond/core/util/size_config.dart';
 import 'package:bellmond/core/widget/responsive_widget.dart';
+import 'package:bellmond/footer.dart';
 import 'package:bellmond/payment_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class CardPage extends StatelessWidget {
+class CardPageWeb extends StatefulWidget {
   final CardNavigation cardNavigation;
 
-  CardPage({Key key, this.cardNavigation}) : super(key: key);
+  const CardPageWeb({Key key, this.cardNavigation}) : super(key: key);
+
+  @override
+  CardPageWebState createState() => CardPageWebState(cardNavigation: cardNavigation);
+}
+
+class CardPageWebState extends State<CardPageWeb> {
+  final CardNavigation cardNavigation;
+
+  CardPageWebState({Key key, this.cardNavigation});
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +105,7 @@ class CardPage extends StatelessWidget {
                         ),
                         SizedBox(height: SizeConfig.screenWidth / 20),
                         SizedBox(
-                          width: SizeConfig.screenWidth / 5,
+                          width: 350,
                           child: TextField(
                             decoration: InputDecoration(
                               filled: true,
@@ -107,7 +117,7 @@ class CardPage extends StatelessWidget {
                         ),
                         SizedBox(height: SizeConfig.screenWidth / 60),
                         SizedBox(
-                          width: SizeConfig.screenWidth / 5,
+                          width: 350,
                           child: TextField(
                             decoration: InputDecoration(
                               filled: true,
@@ -173,20 +183,7 @@ class CardPage extends StatelessWidget {
                   ? Container()
                   : Flexible(
                       child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Container(
-                          color: Theme.of(context).canvasColor,
-                          width: SizeConfig.screenWidth,
-                          height: 100,
-                          child: Center(
-                            child: Image.asset(
-                              "assets/images/bellmond_footer.png",
-                              height: 50,
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                        ),
-                      ),
+                          alignment: Alignment.bottomCenter, child: Footer()),
                     ),
             ],
           ),

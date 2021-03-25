@@ -3,6 +3,7 @@ import 'package:bellmond/core/drawer_navigation.dart';
 import 'package:bellmond/core/home_card.dart';
 import 'package:bellmond/core/top_bar_contents.dart';
 import 'package:bellmond/core/widget/responsive_widget.dart';
+import 'package:bellmond/footer.dart';
 import 'package:flutter/material.dart';
 
 import 'core/util/size_config.dart';
@@ -260,20 +261,7 @@ class HomePageState extends State<HomePage> {
                   ? Container()
                   : Flexible(
                       child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Container(
-                          color: Theme.of(context).canvasColor,
-                          width: SizeConfig.screenWidth,
-                          height: 100,
-                          child: Center(
-                            child: Image.asset(
-                              "assets/images/bellmond_footer.png",
-                              height: 50,
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                        ),
-                      ),
+                          alignment: Alignment.bottomCenter, child: Footer()),
                     ),
             ],
           ),

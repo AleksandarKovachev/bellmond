@@ -1,4 +1,5 @@
-import 'package:bellmond/card_page.dart';
+import 'package:bellmond/card_page_mobile.dart';
+import 'package:bellmond/card_page_web.dart';
 import 'package:bellmond/core/card_navigation.dart';
 import 'package:bellmond/core/util/size_config.dart';
 import 'package:bellmond/core/widget/responsive_widget.dart';
@@ -16,7 +17,9 @@ class HomeCard extends StatelessWidget {
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => CardPage(cardNavigation: cardNavigation),
+              builder: (context) => ResponsiveWidget.isSmallScreen(context)
+                  ? CardPageMobile(cardNavigation: cardNavigation)
+                  : CardPageWeb(cardNavigation: cardNavigation),
             ),
           );
         },
